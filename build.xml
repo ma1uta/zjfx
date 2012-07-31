@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="zjfx-core" default="jar" basedir=".">
+
+    <target name="init-property">
+        <property file="build.properties"/>
+        <property name="src" value="src"/>
+        <property name="main-class" value="org.zjfx.sample.MainApp"/>
+        <property name="classpath" value="${jxfrt.lib}"/>
+    </target>
+
+    <target name="clean" depends="init-property">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="init" depends="clean">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src}"
+               destdir="${build.dir}"
+               classpath="${classpath}"
+               includes="**/*.java" />
+    </target>
+
+    <target name="build" depends="compile">
+        <copy todir="${build.dir}">
+            <fileset dir="${src}" excludes="**/*.java"/>
+        </copy>
+    </target>
+
+    <target name="jar" depends="build">
+        <jar destfile="${build.dir}/zjfx.jar" basedir="${build.dir}" includes="**/*.*"/>
+    </target>
+
+</project>

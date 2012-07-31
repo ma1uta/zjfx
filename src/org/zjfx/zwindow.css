@@ -1,0 +1,26 @@
+.root {
+    -fx-glass-color: rgba(245,245,245, 0.9);
+}
+
+.zwindow-main-pane {
+    -fx-spacing: 10;
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-glass-color, 120%), -fx-glass-color);
+    -fx-border-color: derive(whitesmoke, -20%);
+    -fx-border-width: 3;
+    -fx-background-insets: 10;
+    -fx-border-insets: 10;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.5, 0, 0);
+}
+
+.zwindow-button-bar {
+    -fx-spacing: 5;
+    -fx-padding: 10;
+}
+
+.zwindow-header-separator .line {
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+}
+
