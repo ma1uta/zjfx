@@ -1,4 +1,4 @@
-package org.zjfx;
+package org.zjfx.control;
 
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;

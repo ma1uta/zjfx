@@ -1,13 +1,9 @@
-package org.zjfx;
+package org.zjfx.displayer;
 
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.util.Builder;
 import javafx.util.BuilderFactory;
-import org.zjfx.displayer.DisplayerBuilder;
-import org.zjfx.displayer.StringDisplayer;
-
-import java.util.HashSet;
-import java.util.Set;
+import org.zjfx.ZModel;
 
 public class DisplayerBuilderFactory implements BuilderFactory {
 
@@ -15,13 +11,7 @@ public class DisplayerBuilderFactory implements BuilderFactory {
     public static final String MODEL = "model";
     public static final String CLASS = "class";
     private final JavaFXBuilderFactory defaultBuilderFactory;
-    private Set<Class<?>> builders;
     private ZModel<?> model;
-
-    {
-        builders = new HashSet<Class<?>>();
-        builders.add(StringDisplayer.class);
-    }
 
     public DisplayerBuilderFactory(ZModel<?> model) {
         defaultBuilderFactory = new JavaFXBuilderFactory();
@@ -31,7 +21,7 @@ public class DisplayerBuilderFactory implements BuilderFactory {
     @Override
     public Builder<?> getBuilder(Class<?> aClass) {
         Builder<?> builder;
-        if (builders.contains(aClass)) {
+        if (AbstractDisplayer.class.isAssignableFrom(aClass)) {
             DisplayerBuilder displayerBuilder = new DisplayerBuilder();
             displayerBuilder.put(CLASS, aClass);
             displayerBuilder.put(MODEL, model);

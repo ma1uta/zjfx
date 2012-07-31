@@ -1,6 +1,5 @@
 package org.zjfx.displayer;
 
-import org.zjfx.DisplayerBuilderFactory;
 import org.zjfx.ZModel;
 import javafx.util.Builder;
 
@@ -10,10 +9,10 @@ public class DisplayerBuilder extends HashMap<String, Object> implements Builder
 
     @Override
     public AbstractDisplayer build() {
-        Class<?> clazz = (Class<?>) get(DisplayerBuilderFactory.CLASS);
+        Class<? extends AbstractDisplayer> clazz = (Class<? extends AbstractDisplayer>) get(DisplayerBuilderFactory.CLASS);
         AbstractDisplayer displayer;
         try {
-            displayer = (AbstractDisplayer) clazz.newInstance();
+            displayer = clazz.newInstance();
         } catch (InstantiationException e) {
             throw new RuntimeException("Cannot find displayer by class " + clazz.getName(), e);
         } catch (IllegalAccessException e) {
