@@ -35,6 +35,7 @@ public abstract class ModelController implements Initializable {
                 field.setAccessible(true);
             Attribute annotation = field.getAnnotation(Attribute.class);
             String attr = annotation.modelAttribute();
+            attr = (attr == null) || (attr.isEmpty()) ? getDefaultModelAttribute(field) : attr;
             String property = annotation.controlProperty();
             try {
                 StringConverter converter = annotation.converter().newInstance();
@@ -45,6 +46,10 @@ public abstract class ModelController implements Initializable {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    protected String getDefaultModelAttribute(Field field) {
+        return field.getName();
     }
 
     public void initControl(Node control, String controlProperty, String modelProperty, StringConverter converter) {
@@ -67,6 +72,7 @@ public abstract class ModelController implements Initializable {
                 field.setAccessible(true);
             Attribute annotation = field.getAnnotation(Attribute.class);
             String attr = annotation.modelAttribute();
+            attr = (attr == null) || (attr.isEmpty()) ? getDefaultModelAttribute(field) : attr;
             String property = annotation.controlProperty();
             try {
                 StringConverter converter = annotation.converter().newInstance();
