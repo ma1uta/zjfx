@@ -1,0 +1,5 @@
+# путь до библиотеки JavaFX
+jxfrt.lib=/home/tolya/javafx-sdk2.2.0-beta/rt/lib/jfxrt.jar
+
+# папка, в которой собирается библиотека
+build.dir=/home/tolya/dev/zjfx/build
