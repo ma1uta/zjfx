@@ -66,7 +66,7 @@ public abstract class ZWindow<T> {
                 .center(createForm())
                 .build();
         final Scene scene = SceneBuilder.create().root(borderPane).fill(Color.TRANSPARENT).build();
-        scene.getStylesheets().add(getClass().getResource("zwindow.css").toExternalForm());
+        scene.getStylesheets().add(ClassLoader.getSystemResource("org/zjfx/zwindow.css").toExternalForm());
         return scene;
     }
 
